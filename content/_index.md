@@ -3,20 +3,20 @@ title: "Home"
 tagline: "An after-school lab where you pick a question, build something, and show it off."
 ---
 
-## Pick a path
+## Project Goals
 
-Everyone in STEAM Lab chooses one of three paths. Every path starts the same way: a one-page project charter, a plan of attack with milestones, regular check-ins, and a lab notebook you keep as you go.
+Everyone in Durfee STEAM Lab is a contributor to the overall mission. 
 
+<div class="card">
+<h3>EnviroSound</h3>
+<p>An art-and-science project that turns environmental data into sound, funded by an MIT Sea Grant award.</p>
+<p class="small">Project files are on GitHub: <a href="https://github.com/coolguyalex/Monolith">github.com/coolguyalex/Monolith</a>. School devices may block that site. More of it is coming to this page.</p>
+</div>
 <div class="cards">
 <div class="card">
 <h3>Competition</h3>
 <p>Take a project to the science and engineering fair, or to a regional robotics or rocketry competition.</p>
 <p><a href="/fair/">Fair &amp; deadlines</a></p>
-</div>
-<div class="card">
-<h3>EnviroSound</h3>
-<p>An art-and-science project that turns environmental data into sound, funded by an MIT Sea Grant award.</p>
-<p class="small">Project files are on GitHub: <a href="https://github.com/coolguyalex/Monolith">github.com/coolguyalex/Monolith</a>. School devices may block that site. More of it is coming to this page.</p>
 </div>
 <div class="card">
 <h3>Independent project</h3>
