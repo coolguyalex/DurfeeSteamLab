@@ -56,3 +56,9 @@ Put a `weight:` in the front matter to control the order in lists. Add `toc: tru
 
 Cloudflare runs `hugo`, which builds the site into `public/`, then publishes that folder.
 `public/` is not saved in Git, because the build makes it fresh each time.
+
+## Adding a past project
+
+Make a folder in `content/projects/` named after the project, put an `index.md` inside it, and
+put the photos in the same folder. Copy `content/projects/geoglobe/index.md` as a starting
+point. Its front matter (title, summary, year, image) fills in the card on the Past Projects page.

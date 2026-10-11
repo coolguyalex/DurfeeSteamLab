@@ -1,0 +1,30 @@
+{{- /*
+  projects/list.html: THE PAST PROJECTS PAGE (a card for every project)
+
+  Hugo looks in layouts/projects/ first for pages in content/projects/, the same way
+  layouts/posts/list.html is used for the bulletin board.
+  Each project is a folder in content/projects/ with an index.md inside. That index.md's
+  front matter (title, summary, year, image) fills in its card.
+*/ -}}
+{{ define "main" }}
+  {{ partial "crumbs.html" . }}
+  <h1>{{ .Title }}</h1>
+  {{ .Content }}
+
+  <div class="cards">
+    {{/* .Pages is every project in this section. "sort" orders them by the "year" value in
+           each project's front matter, newest first ("desc" means descending). */}}
+    {{ range sort .Pages "Params.year" "desc" }}
+      {{/* Inside "with" the dot changes, so keep the project in $project to use later. */}}
+      {{ $project := . }}
+      <a class="card link" href="{{ .RelPermalink }}">
+        {{/* "with" runs its block only if the value exists. The image file sits in the
+               project's own folder, so its address is the project's address plus the file name. */}}
+        {{ with .Params.image }}<img class="card-img" src="{{ $project.RelPermalink }}{{ . }}" alt="">{{ end }}
+        <h3>{{ .Title }}</h3>
+        {{ with .Params.year }}<p class="small">{{ . }}</p>{{ end }}
+        {{ with .Params.summary }}<p>{{ . | markdownify }}</p>{{ end }}
+      </a>
+    {{ end }}
+  </div>
+{{ end }}
