@@ -100,10 +100,10 @@ a:hover { text-decoration-thickness: 2px; color: var(--bright); }
 .brand { display: flex; align-items: center; gap: .7rem; color: var(--bright); text-decoration: none; font-family: var(--mono); font-weight: 700; font-size: 1.05rem; letter-spacing: .02em; }
 .brand:hover { color: var(--bright); }
 
-/* The logo (layouts/partials/logo.html). The wave takes the text colour;
-   the dot is filled with the accent red. */
+/* The logo (layouts/partials/logo.html). The line is red; the nodes are white with a red ring. */
 .logo { display: block; flex: none; }
-.logo-dot { fill: var(--accent); }
+.logo-line { stroke: var(--accent); stroke-width: 2.6; }
+.logo-node { fill: var(--bright); stroke: var(--accent); stroke-width: 1.4; }
 
 .main-nav { display: flex; flex-wrap: wrap; gap: .15rem 1.1rem; }
 .main-nav a { color: var(--muted); text-decoration: none; padding: .35rem 0; border-bottom: 2px solid transparent; }
