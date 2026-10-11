@@ -2,26 +2,39 @@
 title: "Schedule & Info"
 ---
 
-{{% admonition type="todo" title="Teacher: confirm before publishing" %}}
-The meeting days are not confirmed yet. The dates below assume **Tuesdays and Thursdays**. If it is Mondays and Wednesdays, change DAYS in tools/gen_schedule.py and rebuild. Also fill in the places marked in yellow, then delete this box.
+<!--
+FRONT MATTER: the block between the two --- lines above. It is settings for this page, not page text.
+  title:  the page title (the heading, the browser tab, and links that point to it)
+
+Shortcodes in this file:
+  admonition (type="todo") makes the yellow box near the top. It is a reminder to check the
+  dates against the school calendar. When that is done, delete the whole box.
+
+The tables below are typed by hand. To change the meeting days or add a no-meeting date,
+edit the table rows. (Markdown tables: | columns | separated | by pipes |, with a
+--- row under the header.) The "No meetings" list and the monthly table should agree.
+-->
+
+{{% admonition type="todo" title="Confirm before publishing" %}}
+The no-meeting dates below assume Indigenous Peoples' Day, Veterans Day, the day before Thanksgiving, winter break, MLK Day and the February and April vacation weeks. Check them against the Fall River school calendar, fix the table, then delete this box.
 {{% /admonition %}}
 
 ## The basics
 
-- **When:** Tuesdays and Thursdays after school, about two hours <span class="todo">[add start and end times]</span>
-- **Where:** <span class="todo">[add room]</span>
-- **Who:** <span class="todo">[add teacher name and contact]</span>
-- **Season:** October 6, 2026 to May 13, 2027. That is 55 meetings, about 110 hours.
+- **When:** Mondays and Wednesdays, 3 to 5 pm
+- **Where:** Room 3106
+- **Contact:** [alsousa@fallriverschools.org](mailto:alsousa@fallriverschools.org) or [tlamar@fallriverschools.org](mailto:tlamar@fallriverschools.org)
+- **Season:** October 14, 2026 to May 12, 2027. That is 52 meetings, 104 hours.
 
 ## What a meeting looks like
 
 - A short round-robin: what you are interested in, what you learned, and your plan for next week.
 - One featured presentation each week. The job rotates through the team.
-- Time to work on your own project and check in with your teacher.
+- Time to work on your own project and get a second opinion from the others in the room.
 
 ## What you make
 
-Everyone produces the same set of things, whichever path they choose:
+Everyone produces the same set of things, whichever direction they take:
 
 1. A project charter, which is one page saying what you will do and why.
 2. A plan of attack with milestones.
@@ -44,17 +57,17 @@ See [Science Fair & Deadlines](/fair/) for the full list.
 
 ## No meetings
 
-Tue Nov 3, Thu Nov 26, Thu Dec 24, Tue Dec 29, Thu Dec 31, Tue Feb 16, Thu Feb 18, Tue Apr 20, Thu Apr 22.
+Mon Oct 12, Wed Nov 11, Wed Nov 25, Mon Dec 28, Wed Dec 30, Mon Jan 18, Mon Feb 15, Wed Feb 17, Mon Apr 19, Wed Apr 21.
 
 ## Meeting dates
 
 | Month | Meetings |
 | --- | --- |
-| October 2026 | Tue 6, Thu 8, Tue 13, Thu 15, Tue 20, Thu 22, Tue 27, Thu 29 |
-| November 2026 | Thu 5, Tue 10, Thu 12, Tue 17, Thu 19, Tue 24 |
-| December 2026 | Tue 1, Thu 3, Tue 8, Thu 10, Tue 15, Thu 17, Tue 22 |
-| January 2027 | Tue 5, Thu 7, Tue 12, Thu 14, Tue 19, Thu 21, Tue 26, Thu 28 |
-| February 2027 | Tue 2, Thu 4, Tue 9, Thu 11, Tue 23, Thu 25 |
-| March 2027 | Tue 2, Thu 4, Tue 9, Thu 11, Tue 16, Thu 18, Tue 23, Thu 25, Tue 30 |
-| April 2027 | Thu 1, Tue 6, Thu 8, Tue 13, Thu 15, Tue 27, Thu 29 |
-| May 2027 | Tue 4, Thu 6, Tue 11, Thu 13 |
+| October 2026 | Wed 14, Mon 19, Wed 21, Mon 26, Wed 28 |
+| November 2026 | Mon 2, Wed 4, Mon 9, Mon 16, Wed 18, Mon 23, Mon 30 |
+| December 2026 | Wed 2, Mon 7, Wed 9, Mon 14, Wed 16, Mon 21, Wed 23 |
+| January 2027 | Mon 4, Wed 6, Mon 11, Wed 13, Wed 20, Mon 25, Wed 27 |
+| February 2027 | Mon 1, Wed 3, Mon 8, Wed 10, Mon 22, Wed 24 |
+| March 2027 | Mon 1, Wed 3, Mon 8, Wed 10, Mon 15, Wed 17, Mon 22, Wed 24, Mon 29, Wed 31 |
+| April 2027 | Mon 5, Wed 7, Mon 12, Wed 14, Mon 26, Wed 28 |
+| May 2027 | Mon 3, Wed 5, Mon 10, Wed 12 |

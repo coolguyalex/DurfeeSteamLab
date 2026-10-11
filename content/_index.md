@@ -1,7 +1,22 @@
 ---
 title: "Home"
-tagline: "An after-school lab where you pick a question, build something, and show it off."
+tagline: "A working lab at Durfee High School. Pick a question, build something, show it off."
 ---
+
+<!--
+FRONT MATTER: the block between the two --- lines above. It is settings for this page, not page text.
+  title:  the page title (the heading, the browser tab, and links that point to it)
+  tagline: the sentence under the title in the home page banner (layouts/index.html reads it)
+
+THIS FILE IS THE HOME PAGE. Its name starts with an underscore (_index.md) because it is a
+"section page", a page that stands for a whole area of the site. The bulletin board appears
+ABOVE the text below; layouts/index.html adds it. Everything below is Markdown, which Hugo
+turns into HTML:
+  ## Heading            a second-level heading
+  <div class="cards">   a grid of boxes, written as plain HTML (allowed by unsafe = true in hugo.toml)
+  <a class="card link"> a box that is also a link; its look is in static/css/style.css
+  <span class="todo">   a yellow mark for something still to fill in
+-->
 
 ## Project Goals
 
@@ -27,13 +42,13 @@ Everyone in Durfee STEAM Lab is a contributor to the overall mission.
 ## Start here
 
 <div class="cards">
-<a class="card link" href="/resources/pathways/">
-<h3>Learning Pathways</h3>
-<p>Four starter paths with step-by-step projects: Microcontrollers, Data Science, Synthesize and Design. No experience needed.</p>
+<a class="card link" href="/resources/">
+<h3>Resources</h3>
+<p>Circuits, music basics, Arduino, sound tools, Python and Onshape: what each is for and where to learn it.</p>
 </a>
 <a class="card link" href="/resources/software/">
-<h3>Recommended Software</h3>
-<p>The free, browser-based tools we use, and what each one is for.</p>
+<h3>Software at a Glance</h3>
+<p>Every tool in one table: cost, account, and whether it runs in the browser.</p>
 </a>
 <a class="card link" href="/fair/">
 <h3>Science Fair &amp; Deadlines</h3>
@@ -41,16 +56,16 @@ Everyone in Durfee STEAM Lab is a contributor to the overall mission.
 </a>
 <a class="card link" href="/schedule/">
 <h3>Schedule &amp; Info</h3>
-<p>When we meet, what a meeting looks like, and what you make.</p>
+<p>When and where we meet, what a meeting looks like, and what you make.</p>
 </a>
 </div>
 
 ## What a meeting looks like
 
-We meet for about two hours after school. Each week has a short round-robin where everyone shares what they are interested in, what they learned, and their plan for next week. One person gives a featured presentation, and the job rotates through the team.
+We meet Mondays and Wednesdays from 3 to 5 pm in room 3106. Each week has a short round-robin where everyone shares what they are interested in, what they learned, and their plan for next week. One person gives a featured presentation, and the job rotates through the team.
 
-STEAM Lab is not a class. There are no grades. You get written feedback against a shared rubric.
+Nothing is graded. Everyone gets written feedback against a shared rubric.
 
 ## How to join
 
-Ask <span class="todo">[add teacher name and room]</span>.
+Come by room 3106 on a Monday or Wednesday at 3 pm, or email [alsousa@fallriverschools.org](mailto:alsousa@fallriverschools.org) or [tlamar@fallriverschools.org](mailto:tlamar@fallriverschools.org).

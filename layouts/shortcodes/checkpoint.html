@@ -1,3 +1,10 @@
+{{- /*
+  checkpoint.html: A SHORTCODE FOR THE GREEN "YOU SHOULD SEE THIS NOW" BOXES IN THE LESSONS
+
+  Used in Markdown as an opening tag, the text, and a closing tag (see the README).
+  .Inner is the text in between. The percent-sign form of shortcode tag tells Hugo to treat
+  that text as Markdown, so **bold** and links work inside it.
+*/ -}}
 <div class="checkpoint">
 {{ .Inner }}
 </div>

@@ -1,7 +1,24 @@
+{{- /*
+  single.html: A NORMAL PAGE
+
+  Hugo uses this template for any Markdown file that is not named _index.md,
+  for example content/schedule.md or content/resources/arduino/lab-guide.md.
+  (Files named _index.md are "section pages" and use list.html instead.)
+
+  This file does not make a whole web page. It only fills in the block named "main"
+  that baseof.html left empty. baseof.html supplies the rest.
+*/ -}}
 {{ define "main" }}
+  {{/* The breadcrumb trail, for example "Resources > Sound Tools". */}}
   {{ partial "crumbs.html" . }}
+
+  {{/* The page title, from the title: line in the front matter. */}}
   <h1>{{ .Title }}</h1>
-  {{ if eq .Section "posts" }}<p class="small"><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time></p>{{ end }}
+
+  {{/* The contents list. It only appears on pages with "toc: true" in their front matter.
+         .TableOfContents is built by Hugo from the page's headings; hugo.toml says which levels. */}}
+  {{ if .Params.toc }}<nav class="toc" aria-label="On this page"><p class="toc-title">On this page</p>{{ .TableOfContents }}</nav>{{ end }}
+
+  {{/* The body of the Markdown file, already turned into HTML. */}}
   {{ .Content }}
-  {{ partial "pager.html" . }}
 {{ end }}

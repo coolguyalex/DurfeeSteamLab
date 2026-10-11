@@ -1,8 +1,25 @@
+{{- /*
+  header.html: THE LOGO AND THE MENU AT THE TOP OF EVERY PAGE
+
+  A partial is a small template that other templates pull in with: partial "header.html" .
+  The menu items are not written here. They are listed in hugo.toml and this file loops over them.
+*/ -}}
+
+{{/* Save the current page in a variable called $cur. Inside the loop below, the dot (.)
+       changes to mean "the menu item", so we need a way to still refer to the page itself. */}}
 {{ $cur := . }}
 <header class="site-header"><div class="wrap">
-  <a class="brand" href="{{ "/" | relURL }}">{{ partial "gear.html" (dict "size" 26 "stroke" "#f2efe6") }}<span>{{ site.Title }}</span></a>
+  {{/* The logo and site name, linking to the home page. The logo is another partial;
+         the "dict" part passes it a value: the width to draw it at, in pixels. */}}
+  <a class="brand" href="{{ "/" | relURL }}">{{ partial "logo.html" (dict "width" 58) }}<span>{{ site.Title }}</span></a>
   <nav class="main-nav" aria-label="Main">
+    {{/* Repeat once for each menu item in hugo.toml. */}}
     {{ range site.Menus.main -}}
+      {{/* Mark the item for the page you are on. It is "current" when the page's address
+             equals the item's address, or starts with it. Resources/Circuits starts with
+             /resources/, so Resources stays highlighted. The Home item is excluded from the
+             "starts with" test, because every address starts with a slash. The CSS draws
+             the red underline under whichever link gets aria-current="page". */}}
       <a href="{{ .URL }}"{{ if or (eq $cur.RelPermalink .URL) (and (ne .URL "/") (hasPrefix $cur.RelPermalink .URL)) }} aria-current="page"{{ end }}>{{ .Name }}</a>
     {{ end }}
   </nav>

@@ -1,9 +1,0 @@
-{{/* In Hugo, .NextInSection is the page BEFORE this one in weight order, and
-     .PrevInSection is the page AFTER it, so the names are swapped here on purpose. */}}
-{{ if hasPrefix .RelPermalink "/resources/pathways/" }}
-<nav class="pager" aria-label="Pages in this pathway">
-  {{ with .NextInSection }}<a class="prev" href="{{ .RelPermalink }}"><span>Previous</span>{{ .Title }}</a>
-  {{ else }}<a class="prev" href="{{ $.Parent.RelPermalink }}"><span>Previous</span>Overview</a>{{ end }}
-  {{ with .PrevInSection }}<a class="next" href="{{ .RelPermalink }}"><span>Next</span>{{ .Title }}</a>{{ end }}
-</nav>
-{{ end }}

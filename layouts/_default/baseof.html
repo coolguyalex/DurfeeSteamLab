@@ -1,20 +1,56 @@
+{{- /*
+  baseof.html: THE PAGE SHELL
+
+  Hugo wraps every page of the site in this file. It holds what is the same on every page:
+  the <head>, the header, the footer. Words inside double curly braces are Hugo template
+  code; everything else is ordinary HTML that is copied to the page unchanged.
+
+  A "block" is a hole in the shell. The block lines below say "something else fills this in".
+  Each other template (single.html, list.html, index.html and so on) fills in the holes
+  with a define section of the same name.
+
+  The single dot (.) means "the page being built right now". Writing .Title means this
+  page's title, and .Params.description means a field called description in its front matter.
+*/ -}}
 <!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  {{/* The text in the browser tab. The home page shows just the site name.
+         Other pages show "Page title · Site name". The if / else / end lines choose which. */}}
   <title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }} &middot; {{ site.Title }}{{ end }}</title>
+
+  {{/* The short description search engines show. A page can set its own with a
+         "description:" line in its front matter. "with" means: if that field exists,
+         use it; otherwise (the else part) use the default sentence. */}}
   <meta name="description" content="{{ with .Params.description }}{{ . }}{{ else }}An after-school STEAM program at Durfee High School in Fall River, MA.{{ end }}">
+
+  {{/* The tab icon and the stylesheet. Both live in the static/ folder. Hugo copies
+         everything in static/ to the top of the finished site, so static/css/style.css
+         becomes /css/style.css. The "| relURL" part turns a name into a proper link. */}}
   <link rel="icon" href="{{ "favicon.svg" | relURL }}">
   <link rel="stylesheet" href="{{ "css/style.css" | relURL }}">
 </head>
 <body>
+  {{/* A hidden link that appears when you press Tab. It lets keyboard and screen-reader
+         users jump straight past the menu to the page itself. */}}
   <a class="skip" href="#main">Skip to content</a>
+
+  {{/* A "partial" is a small reusable template kept in layouts/partials/.
+         The dot after the name hands the current page to the partial. */}}
   {{ partial "header.html" . }}
+
+  {{/* Block 1: the banner. Only the home page fills it in (see layouts/index.html).
+         On every other page it stays empty. */}}
   {{ block "hero" . }}{{ end }}
+
   <main id="main" class="wrap content">
+    {{/* Block 2: the page itself. Every page type fills this in. */}}
     {{ block "main" . }}{{ end }}
   </main>
+
   {{ partial "footer.html" . }}
 </body>
 </html>

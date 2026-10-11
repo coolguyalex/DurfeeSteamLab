@@ -1,16 +1,36 @@
+# hugo.toml: the site's settings. Hugo reads this file first.
+# Lines starting with # are comments; Hugo ignores them.
+
+# The site's public address. Hugo uses it to build full links (the sitemap, the RSS feed).
+# Change this if the site moves to a custom domain.
 baseURL = 'https://durfeesteamlab.sousaa42.workers.dev/'
+
+# The language of the pages. This ends up in the <html lang="..."> tag.
 locale = 'en-us'
+
+# The site name. Templates read it as site.Title (the header, the footer and every page's <title>).
 title = 'Durfee STEAM Lab'
 
-# Don't build tag/category pages (we don't use them).
+# Hugo can build "tag" and "category" listing pages. We don't use tags, so don't build them.
 disableKinds = ['taxonomy', 'term']
 
+# Markdown settings. "Goldmark" is the program that turns Markdown into HTML.
 [markup.goldmark.renderer]
-  unsafe = true        # lets the old pages keep their small bits of raw HTML
+  # Allow raw HTML inside Markdown files. We need this for the cards on index pages,
+  # which are written as <div class="card"> blocks. Without it Hugo would delete them.
+  unsafe = true
 
-[markup.highlight]
-  noClasses = false    # code blocks styled by our own CSS, not Hugo's built-in colors
+# Pages with "toc: true" in their front matter get a contents list. These two lines say
+# which headings go in it: level 2 only, which is the ## headings (one per lesson).
+[markup.tableOfContents]
+  startLevel = 2
+  endLevel = 2
 
+# The top menu. Each [[menus.main]] block is one menu item. The header template
+# (layouts/partials/header.html) loops over them in order of weight, lowest first.
+# name    = the words shown in the menu
+# pageRef = the page it links to (a path under content/)
+# weight  = the sort order
 [[menus.main]]
   name = 'Home'
   pageRef = '/'

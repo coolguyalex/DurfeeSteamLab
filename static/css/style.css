@@ -1,159 +1,262 @@
-/* Durfee STEAM Lab: chalkboard header, paper page, red pencil accents.
-   System fonts only. No scripts, no outside requests. */
+/* =====================================================================
+   style.css: the look of the whole site ("Signal" theme).
+   Near-black pages, one red accent. System fonts only, no scripts, and
+   no requests to other websites, so a school web filter can't break it.
 
+   HOW CSS WORKS, IN ONE PARAGRAPH
+   A rule is: selector { property: value; }. The selector says WHAT to style
+   (a tag like h2, or a class like .card, which matches HTML written
+   class="card"). The lines in braces say HOW. When two rules disagree, the
+   more specific selector wins; if they tie, the one lower in this file wins.
+
+   TO RETHEME THE SITE: change the colours in the :root block just below.
+   Everything else reads those named colours through var(--name).
+   ===================================================================== */
+
+
+/* ---------------------------------------------------------------------
+   1. COLOURS AND FONTS
+   :root is the whole page. Names starting with -- are custom properties
+   (variables); the rest of this file uses them as var(--name).
+   --------------------------------------------------------------------- */
 :root {
-  --board: #272c33;
-  --board-2: #323943;
-  --chalk: #f2efe6;
-  --pencil: #e5484d;
-  --paper: #fbf9f4;
-  --ink: #22262b;
-  --muted: #5b6470;
-  --line: #d9d4c7;
-  --card: #ffffff;
-  --code-bg: #1f2429;
-  --code-ink: #e9e6df;
-  --inline-bg: #eceae3;
-  --ok-bg: #e8f3ea;
-  --ok-line: #3c9d5b;
-  --todo-bg: #fff3bf;
-  --todo-line: #d6a800;
-  --draft-bg: #fdeeee;
-  --link: #1a5fb4;
-  --font: "Avenir Next", "Segoe UI", "Trebuchet MS", system-ui, -apple-system, Roboto, sans-serif;
-  --mono: ui-monospace, "Cascadia Code", "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  color-scheme: dark;        /* tells the browser to draw its own widgets (scrollbars) dark too */
+
+  --bg: #0e0e0e;             /* page background */
+  --bar: #0a0a0a;            /* header and footer background (a touch darker) */
+  --card: #151515;           /* boxes: cards, contents list, tables */
+  --line: #2c2c2c;           /* thin borders and divider lines */
+
+  --ink: #dcdcdc;            /* normal body text */
+  --bright: #f2f2f2;         /* brightest text: headings, the active menu item */
+  --muted: #9b9b9b;          /* quiet text: dates, breadcrumbs, inactive menu items */
+
+  --accent: #ff3b30;         /* THE red. Used sparingly: logo dot, labels, card tops */
+  --link: #ff7a70;           /* link colour: a lighter red so it is readable on black */
+
+  --code-bg: #0a0a0a;        /* background of code blocks */
+  --code-ink: #e6e6e6;       /* text colour in code blocks */
+  --inline-bg: #242424;      /* background of short inline code like this */
+
+  --ok-bg: #14231a;          /* green checkpoint boxes */
+  --ok-line: #3fae68;
+  --todo-bg: #4a4012;        /* yellow "still to fill in" marks (kept yellow on purpose, */
+  --todo-line: #d6a800;      /* so they stand out from the red accent) */
+  --draft-bg: #2a1514;       /* background of "draft" notes */
+
+  /* Font stacks: the browser uses the first font in the list that the computer has. */
+  --font: "Segoe UI", "Avenir Next", system-ui, -apple-system, Roboto, "Helvetica Neue", sans-serif;
+  --mono: ui-monospace, "Cascadia Code", "SFMono-Regular", Consolas, "Liberation Mono", "DejaVu Sans Mono", monospace;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --paper: #1d2126;
-    --ink: #ebe8e0;
-    --muted: #a3acb8;
-    --line: #3a424c;
-    --card: #262b32;
-    --code-bg: #14171b;
-    --inline-bg: #323943;
-    --ok-bg: #1f3326;
-    --todo-bg: #4a4012;
-    --draft-bg: #3b2224;
-    --link: #8ec1ff;
-  }
-}
 
+/* ---------------------------------------------------------------------
+   2. PAGE BASICS
+   --------------------------------------------------------------------- */
+
+/* Make width include padding and borders, which makes sizes easier to predict. */
 * { box-sizing: border-box; }
+
+/* Stop phones from enlarging text on their own when turned sideways. */
 html { -webkit-text-size-adjust: 100%; }
+
 body {
-  margin: 0;
-  background: var(--paper);
+  margin: 0;                                   /* remove the browser's default outer gap */
+  background-color: var(--bg);
+  /* The faint grid: two layers of 1px lines (one horizontal, one vertical),
+     each repeated every 40px, drawn at 3.5% white. */
+  background-image:
+    linear-gradient(rgba(255, 255, 255, .035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, .035) 1px, transparent 1px);
+  background-size: 40px 40px;
   color: var(--ink);
   font-family: var(--font);
-  font-size: 1.0625rem;
-  line-height: 1.65;
+  font-size: 1.0625rem;                        /* rem = a multiple of the browser's base size (17px here) */
+  line-height: 1.65;                           /* space between lines of text */
 }
+
+/* .wrap keeps content in a centred column no wider than 62rem. */
 .wrap { max-width: 62rem; margin: 0 auto; padding: 0 1rem; }
+
 a { color: var(--link); }
-a:hover { text-decoration-thickness: 2px; }
+a:hover { text-decoration-thickness: 2px; color: var(--bright); }
+
+/* .small is used for dates and fine print. */
 .small { font-size: .9rem; color: var(--muted); }
 
-.skip { position: absolute; left: -999px; top: 0; background: var(--chalk); color: var(--board); padding: .5rem 1rem; z-index: 10; }
+/* The "Skip to content" link: parked off-screen until a keyboard user tabs to it. */
+.skip { position: absolute; left: -999px; top: 0; background: var(--accent); color: #fff; padding: .5rem 1rem; z-index: 10; }
 .skip:focus { left: 0; }
 
-/* header */
-.site-header { background: var(--board); color: var(--chalk); border-bottom: 3px solid var(--pencil); }
+
+/* ---------------------------------------------------------------------
+   3. HEADER (logo + menu). Built by layouts/partials/header.html
+   --------------------------------------------------------------------- */
+.site-header { background: var(--bar); color: var(--bright); border-bottom: 1px solid var(--line); }
+
+/* Flexbox puts the logo and menu side by side, and lets the menu wrap below on a phone. */
 .site-header .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .25rem 1.5rem; padding-top: .6rem; padding-bottom: .6rem; }
-.brand { display: flex; align-items: center; gap: .6rem; color: var(--chalk); text-decoration: none; font-weight: 700; font-size: 1.15rem; letter-spacing: .02em; }
+
+.brand { display: flex; align-items: center; gap: .7rem; color: var(--bright); text-decoration: none; font-family: var(--mono); font-weight: 700; font-size: 1.05rem; letter-spacing: .02em; }
+.brand:hover { color: var(--bright); }
+
+/* The logo (layouts/partials/logo.html). The wave takes the text colour;
+   the dot is filled with the accent red. */
+.logo { display: block; flex: none; }
+.logo-dot { fill: var(--accent); }
+
 .main-nav { display: flex; flex-wrap: wrap; gap: .15rem 1.1rem; }
-.main-nav a { color: var(--chalk); text-decoration: none; padding: .35rem 0; border-bottom: 2px solid transparent; }
-.main-nav a:hover { border-bottom-color: var(--chalk); }
-.main-nav a[aria-current="page"] { border-bottom-color: var(--pencil); font-weight: 700; }
+.main-nav a { color: var(--muted); text-decoration: none; padding: .35rem 0; border-bottom: 2px solid transparent; }
+.main-nav a:hover { color: var(--bright); border-bottom-color: var(--muted); }
+/* The template adds aria-current="page" to the link for the page you are on. */
+.main-nav a[aria-current="page"] { color: var(--bright); border-bottom-color: var(--accent); font-weight: 700; }
 
-/* hero */
-.hero { background: radial-gradient(circle at 18% 0%, var(--board-2), var(--board) 62%); color: var(--chalk); padding: 2.6rem 0 2.4rem; border-bottom: 1px dashed rgba(242, 239, 230, .35); }
-.hero h1 { font-size: clamp(2rem, 6vw, 3.1rem); line-height: 1.1; margin: .6rem 0 .5rem; letter-spacing: .01em; }
-.hero .tagline { font-size: 1.25rem; margin: 0 0 .4rem; max-width: 36rem; }
-.hero .where { margin: 0; color: rgba(242, 239, 230, .75); }
 
-/* content */
+/* ---------------------------------------------------------------------
+   4. HOME PAGE BANNER. Built by layouts/index.html
+   --------------------------------------------------------------------- */
+.hero { padding: 3rem 0 2.2rem; border-bottom: 1px solid var(--line); }
+.hero .where { margin: 0 0 .5rem; color: var(--accent); font-family: var(--mono); font-size: .8rem; letter-spacing: .14em; text-transform: uppercase; }
+/* clamp(min, preferred, max) lets the title grow with the screen width, within limits. */
+.hero h1 { font-family: var(--mono); font-size: clamp(2rem, 6.5vw, 3.2rem); line-height: 1.1; margin: 0 0 .7rem; letter-spacing: -.02em; color: #f7f7f7; }
+.hero .tagline { font-size: 1.25rem; margin: 0; max-width: 38rem; color: #bcbcbc; }
+
+
+/* ---------------------------------------------------------------------
+   5. PAGE CONTENT: headings, lists, breadcrumbs
+   --------------------------------------------------------------------- */
 .content { padding-top: 1.6rem; padding-bottom: 3rem; }
-.content > :not(.cards):not(table):not(.pager) { max-width: 46rem; }
-h1, h2, h3 { line-height: 1.25; font-weight: 700; }
+
+/* Keep lines of text a readable length (46rem), except for card grids and tables,
+   which are allowed to use the full column. */
+.content > :not(.cards):not(table) { max-width: 46rem; }
+
+h1, h2, h3 { line-height: 1.25; font-weight: 700; font-family: var(--mono); letter-spacing: -.01em; color: #f2f2f2; }
 h1 { font-size: 2rem; margin: .6rem 0 1rem; }
 h2 { font-size: 1.4rem; margin: 2.2rem 0 .6rem; padding-bottom: .25rem; border-bottom: 2px solid var(--line); }
 h3 { font-size: 1.12rem; margin: 1.6rem 0 .4rem; }
-.crumbs { font-size: .9rem; color: var(--muted); margin-bottom: .2rem; }
-.crumbs a { color: var(--muted); }
+
+/* When a link jumps to a heading (like /page/#m1-blink), leave a little room above it. */
+.content h2[id] { scroll-margin-top: 1rem; }
+
 li { margin: .25rem 0; }
 ul, ol { padding-left: 1.4rem; }
 
-/* cards */
-.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: 1rem; margin: 1rem 0 1.5rem; }
-.card { background: var(--card); border: 1px solid var(--line); border-top: 4px solid var(--board); border-radius: 10px; padding: .9rem 1.1rem 1rem; color: var(--ink); text-decoration: none; }
-.card h3 { margin: .1rem 0 .3rem; font-size: 1.15rem; }
-.card p { margin: .3rem 0; }
-.card .tag { font-size: .85rem; font-weight: 700; color: var(--pencil); text-transform: uppercase; letter-spacing: .06em; margin: 0; }
-a.card:hover { border-top-color: var(--pencil); box-shadow: 0 3px 10px rgba(0, 0, 0, .15); }
-a.card:focus-visible, .main-nav a:focus-visible, .brand:focus-visible { outline: 3px solid var(--pencil); outline-offset: 2px; }
+/* The breadcrumb trail (layouts/partials/crumbs.html). */
+.crumbs { font-size: .85rem; color: var(--muted); margin-bottom: .2rem; font-family: var(--mono); }
+.crumbs a { color: var(--muted); }
 
-/* code */
-code, kbd { font-family: var(--mono); font-size: .9em; }
-code { background: var(--inline-bg); padding: .08em .35em; border-radius: 4px; }
-kbd { background: var(--card); border: 1px solid var(--line); border-bottom-width: 2px; border-radius: 4px; padding: .05em .4em; }
-pre { background: var(--code-bg); color: var(--code-ink); border-left: 4px solid var(--pencil); border-radius: 8px; padding: .9rem 1rem; overflow-x: auto; line-height: 1.5; font-size: .88rem; }
-pre code { background: none; padding: 0; font-size: inherit; color: inherit; }
+/* A paragraph holding only italic text (used for short captions) is drawn quieter. */
 .content > p > em:only-child { color: var(--muted); font-size: .92rem; }
 
-/* learning-page parts */
-.checkpoint { background: var(--ok-bg); border-left: 4px solid var(--ok-line); border-radius: 6px; padding: .55rem .9rem; }
+
+/* ---------------------------------------------------------------------
+   6. CARDS: the boxes on index pages. Written as plain HTML in the .md files:
+        <div class="cards">  <a class="card link" href="..."> <h3>Title</h3> <p>Text</p> </a>  </div>
+   --------------------------------------------------------------------- */
+/* A grid whose columns are at least 15rem wide and share the space, so the number of
+   columns adjusts to the screen (three on a laptop, one on a phone). */
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: 1rem; margin: 1rem 0 1.5rem; }
+.card { background: var(--card); border: 1px solid var(--line); border-top: 2px solid var(--accent); border-radius: 4px; padding: .9rem 1.1rem 1rem; color: var(--ink); text-decoration: none; }
+.card h3 { margin: .1rem 0 .3rem; font-size: 1.15rem; }
+.card p { margin: .3rem 0; }
+a.card:hover { border-color: #444; border-top-color: var(--accent); background: #1b1b1b; }
+/* The outline keyboard users see when they Tab onto a link. */
+a.card:focus-visible, .main-nav a:focus-visible, .brand:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+
+
+/* ---------------------------------------------------------------------
+   7. CODE
+   Hugo colours the words inside code blocks itself, so only the box is styled here.
+   --------------------------------------------------------------------- */
+code, kbd { font-family: var(--mono); font-size: .9em; }
+code { background: var(--inline-bg); padding: .08em .35em; border-radius: 4px; }          /* short inline code */
+kbd { background: var(--card); border: 1px solid var(--line); border-bottom-width: 2px; border-radius: 4px; padding: .05em .4em; }   /* a keyboard key, like Ctrl */
+
+/* A code block: dark box with a red stripe down the left edge. */
+pre { background: var(--code-bg); color: var(--code-ink); border: 1px solid var(--line); border-left: 3px solid var(--accent); border-radius: 4px; padding: .9rem 1rem; overflow-x: auto; line-height: 1.5; font-size: .88rem; }
+pre code { background: none; padding: 0; font-size: inherit; color: inherit; }            /* code inside a block takes the block's look */
+.highlight { margin: 1rem 0; }                                                              /* Hugo wraps highlighted blocks in this */
+.highlight pre { margin: 0; }
+
+
+/* ---------------------------------------------------------------------
+   8. LESSON PARTS: checkpoints, note boxes, to-do marks, expandable answers
+   --------------------------------------------------------------------- */
+
+/* Green "you should see this now" box. Made by layouts/shortcodes/checkpoint.html. */
+.checkpoint { background: var(--ok-bg); border-left: 3px solid var(--ok-line); border-radius: 4px; padding: .55rem .9rem; margin: 1rem 0; }
+.checkpoint p { margin: .2rem 0; }
+
+/* Note boxes. Made by layouts/shortcodes/admonition.html, which adds the type as a
+   second class, so type="todo" gives class="admonition todo" and matches .admonition.todo. */
 .admonition { border-radius: 8px; padding: .6rem 1rem; margin: 1.1rem 0; border: 1px solid var(--line); background: var(--card); }
 .admonition > p { margin: .3rem 0; }
 .admonition-title { font-weight: 700; margin: 0 0 .1rem; font-size: .85rem; text-transform: uppercase; letter-spacing: .06em; }
-.admonition.draft { background: var(--draft-bg); border: 1px dashed var(--pencil); }
-.admonition.draft .admonition-title { color: var(--pencil); }
+.admonition.draft { background: var(--draft-bg); border: 1px dashed var(--accent); }
+.admonition.draft .admonition-title { color: var(--accent); }
 .admonition.todo { background: var(--todo-bg); border: 1px solid var(--todo-line); }
-.admonition.diagram { border-style: dashed; text-align: center; font-style: italic; padding: 1.4rem 1rem; color: var(--muted); }
+.admonition.diagram { border-style: dashed; text-align: center; font-style: italic; padding: 1.4rem 1rem; color: var(--muted); }   /* "a diagram goes here" placeholders */
 .admonition.note { color: var(--muted); font-size: .95rem; }
-.todo { background: var(--todo-bg); border-radius: 3px; padding: 0 .25em; color: var(--ink); }
+
+/* Yellow marks for things still to fill in. Written in Markdown as
+   <span class="todo">[text]</span>, or <div class="todo-block"> for a bigger area. */
+.todo { background: var(--todo-bg); border-radius: 3px; padding: 0 .25em; color: #fff3bf; }
 .todo-block { background: var(--todo-bg); border-left: 4px solid var(--todo-line); border-radius: 6px; padding: .2rem 1rem .6rem; margin: 1rem 0; }
+
+/* Click-to-open answers: <details><summary>Question</summary>Answer</details> */
 details { background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: .5rem 1rem; margin: 1rem 0; }
 summary { cursor: pointer; font-weight: 700; }
 details[open] summary { margin-bottom: .4rem; }
 
-/* tables */
-.table-wrap { overflow-x: auto; margin: 1rem 0; }
+/* The contents list at the top of long guide pages (see single.html and "toc: true"). */
+.toc { margin: 1rem 0 1.5rem; padding: .7rem 1.1rem; background: var(--card); border: 1px solid var(--line); border-left: 3px solid var(--accent); border-radius: 4px; max-width: 46rem; }
+.toc-title { margin: 0 0 .3rem; font-family: var(--mono); font-size: .8rem; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: .06em; }
+.toc ul { margin: 0; padding-left: 1.1rem; }
+
+
+/* ---------------------------------------------------------------------
+   9. TABLES (written in Markdown with | pipes |)
+   --------------------------------------------------------------------- */
 table { border-collapse: collapse; width: 100%; min-width: 30rem; font-size: .96rem; }
 th, td { text-align: left; vertical-align: top; padding: .5rem .7rem; border-bottom: 1px solid var(--line); }
-th { background: var(--board); color: var(--chalk); }
-tbody tr:nth-child(even) { background: color-mix(in srgb, var(--card) 60%, transparent); }
-
-/* previous / next */
-.pager { display: flex; justify-content: space-between; gap: 1rem; margin-top: 2.5rem; padding-top: 1rem; border-top: 2px solid var(--line); }
-.pager a { display: block; max-width: 48%; padding: .6rem .9rem; border: 1px solid var(--line); border-radius: 8px; background: var(--card); text-decoration: none; font-weight: 700; }
-.pager a span { display: block; font-size: .8rem; font-weight: 400; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; }
-.pager .next { margin-left: auto; text-align: right; }
-.pager a:hover { border-color: var(--pencil); }
-
-/* footer */
-.site-footer { background: var(--board); color: var(--chalk); padding: 1.2rem 0; }
-.site-footer p { margin: .15rem 0; }
-.site-footer .small { color: rgba(242, 239, 230, .7); }
-
-@media (max-width: 34rem) {
-  body { font-size: 1rem; }
-  .pager { flex-direction: column; }
-  .pager a { max-width: none; }
-}
-@media print {
-  .site-header, .site-footer, .pager, .skip { display: none; }
-  body { background: #fff; color: #000; }
-  pre { border: 1px solid #999; background: #f4f4f4; color: #000; }
-}
-
-/* Hugo additions */
+th { background: #1d1d1d; color: var(--bright); font-family: var(--mono); font-size: .85rem; letter-spacing: .04em; border-bottom: 2px solid var(--accent); }
+tbody tr:nth-child(even) { background: color-mix(in srgb, var(--card) 60%, transparent); }   /* faint stripe on every second row */
+/* Inside the page content, a wide table scrolls sideways instead of breaking the layout. */
 .content table { display: block; overflow-x: auto; max-width: 100%; min-width: 0; }
-.checkpoint { margin: 1rem 0; }
-.checkpoint p { margin: .2rem 0; }
+
+
+/* ---------------------------------------------------------------------
+   10. BULLETIN BOARD POSTS (the home page list and the Bulletin Board page)
+   --------------------------------------------------------------------- */
 .post { border-bottom: 1px solid var(--line); padding-bottom: .4rem; }
 .post h3 { margin-bottom: .1rem; }
 .post p { margin: .3rem 0; }
-.highlight { margin: 1rem 0; }
-.highlight pre { margin: 0; }
+
+
+/* ---------------------------------------------------------------------
+   11. FOOTER
+   --------------------------------------------------------------------- */
+.site-footer { background: var(--bar); color: var(--ink); padding: 1.2rem 0; border-top: 1px solid var(--line); }
+.site-footer p { margin: .15rem 0; }
+.site-footer .small { color: var(--muted); }
+
+
+/* ---------------------------------------------------------------------
+   12. SPECIAL SITUATIONS
+   A @media block applies its rules only when its condition is true.
+   --------------------------------------------------------------------- */
+
+/* Narrow screens (phones): slightly smaller text. */
+@media (max-width: 34rem) {
+  body { font-size: 1rem; }
+}
+
+/* Printing: switch to black on white, hide the menu, and drop the grid, to save ink. */
+@media print {
+  .site-header, .site-footer, .skip { display: none; }
+  body { background: #fff; color: #000; background-image: none; }
+  h1, h2, h3 { color: #000; }
+  a { color: #000; }
+  pre { border: 1px solid #999; background: #f4f4f4; color: #000; }
+}

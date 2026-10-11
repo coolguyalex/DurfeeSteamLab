@@ -1,3 +1,13 @@
+{{- /*
+  admonition.html: A SHORTCODE (a custom Markdown tag) FOR COLOURED NOTE BOXES
+
+  Shortcodes let Markdown pages use our own building blocks. In a .md file you write the
+  tag with a type and a title, then the box's text, then the closing tag. The README shows
+  the exact spelling. The types the CSS knows about: note, todo, draft, diagram.
+  .Get "type" and .Get "title" read the values written in the tag. The type becomes a CSS
+  class (admonition todo, for example), which style.css colours. .Inner is the text between
+  the opening and closing tags.
+*/ -}}
 <div class="admonition {{ .Get "type" }}"><p class="admonition-title">{{ .Get "title" }}</p>
 {{ .Inner }}
 </div>

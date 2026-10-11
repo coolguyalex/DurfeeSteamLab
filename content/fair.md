@@ -2,9 +2,20 @@
 title: "Science Fair & Deadlines"
 ---
 
-If your path is the science and engineering fair, this page has the dates and the paperwork. Durfee is in **Region III**.
+<!--
+FRONT MATTER: the block between the two --- lines above. It is settings for this page, not page text.
+  title:  the page title (the heading, the browser tab, and links that point to it)
 
-{{% admonition type="todo" title="Teacher: confirm before publishing" %}}
+This page holds the science fair dates, so the dates are the part that goes out of date.
+Each year, check the tables against the Region III page (linked at the bottom).
+A <div class="todo-block"> is a bigger yellow area for a draft block, such as the
+proposed lab deadlines. A <span class="todo"> is a small yellow mark for one phrase.
+Both are only for unfinished text. Delete the marks when a fact is confirmed.
+-->
+
+For projects headed to the science and engineering fair, this page has the dates and the paperwork. Durfee is in **Region III**.
+
+{{% admonition type="todo" title="Confirm before publishing" %}}
 Region III's own page still showed last year's dates when this was written. The December and January deadlines match the statewide 2026-27 notice. The February and March dates are last year's and are not confirmed. Check with Region III, then delete this box.
 {{% /admonition %}}
 
@@ -21,8 +32,8 @@ Region III's own page still showed last year's dates when this was written. The 
 | Date | What is due | Status |
 | --- | --- | --- |
 | Dec 15, 2026 | **Pre-approval projects.** If your project involves human participants, vertebrate animals, unknown microorganisms, hazardous chemicals, devices or radiation, you need approval first. Nothing starts before approval. | Matches the statewide notice; to be confirmed with Region III |
-| Jan 15, 2027 | **All other projects.** Your teacher marks each one "Ready" in zFairs. | Same |
-| Feb 13, 2027 | Teacher's student list | Last year's date; to be confirmed |
+| Jan 15, 2027 | **All other projects.** The school sponsor marks each one "Ready" in zFairs. | Same |
+| Feb 13, 2027 | Sponsor's student list | Last year's date; to be confirmed |
 | Mar 5, 2027 | Abstract (250 words at most) and supporting files | Last year's date; to be confirmed |
 | Mar 6, 2027 | Fair day | Confirmed |
 
@@ -32,7 +43,7 @@ These are earlier than the fair's, so there is time to fix problems.
 
 <div class="todo-block">
 
-Proposed, teacher to confirm:
+Proposed, to be confirmed:
 
 | Date | What is due |
 | --- | --- |
@@ -60,4 +71,4 @@ The top 30% of projects go on to the Massachusetts fair, and Region III nominate
 - [2026-27 high school manual (PDF)](https://scifair.com/wp-content/uploads/2026/08/MSEF-HS-Manual-2026-2027.pdf)
 - [Paperwork packet (PDF)](https://scifair.com/wp-content/uploads/2026/08/MAHS-paperwork-packet-2627.pdf)
 
-Questions about the fair go through your teacher, who sends them to Region III.
+Questions about the fair go through the lab sponsor, who forwards them to Region III.

@@ -1,3 +1,13 @@
+{{- /*
+  crumbs.html: THE BREADCRUMB TRAIL (Resources > Sound Tools)
+
+  .Ancestors is the list of a page's parents, nearest first. "where ... IsHome false"
+  removes the home page from that list, since a "Home >" in front of everything adds nothing.
+  "with" means: only draw the trail if anything is left (the Resources page itself still has
+  no parents once Home is removed, so it shows no trail).
+  .Reverse flips the list so the farthest parent comes first, and $i is the position in the
+  loop (0 for the first), used to put the arrow between items but not before the first.
+*/ -}}
 {{ $trail := where .Ancestors "IsHome" false }}
 {{ with $trail }}
 <nav class="crumbs" aria-label="Breadcrumb">

@@ -1,3 +1,11 @@
+# .gitignore: files Git should NOT save. Everything listed here is made fresh by Hugo,
+# so saving it would only create noise.
+
+# The finished website. "hugo" builds it into this folder every time. Cloudflare builds its own copy.
 public/
+
+# Hugo's cache of processed files.
 resources/_gen/
+
+# A small lock file Hugo leaves while it runs.
 .hugo_build.lock

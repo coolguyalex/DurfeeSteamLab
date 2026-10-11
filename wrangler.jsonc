@@ -1,8 +1,21 @@
+// wrangler.jsonc: instructions for Cloudflare. ("Wrangler" is Cloudflare's deploy tool.)
+// This file is JSON with comments allowed, which is why it ends in .jsonc.
+// After Cloudflare runs "hugo" to build the site, it runs "npx wrangler deploy",
+// which reads this file to find out what to publish.
 {
+  // The name of the project on Cloudflare. It is also the first part of the web address.
   "name": "durfeesteamlab",
+
+  // Which version of Cloudflare's platform behaviour to use. Leave it alone.
   "compatibility_date": "2026-10-01",
+
+  // "assets" means plain files with no server code: the HTML, CSS and images.
   "assets": {
+    // Publish the folder Hugo builds into. It is called public/ and it is not saved in Git.
     "directory": "./public",
+
+    // When someone asks for a page that doesn't exist, send back 404.html
+    // (made from layouts/404.html) instead of a bare error.
     "not_found_handling": "404-page"
   }
 }

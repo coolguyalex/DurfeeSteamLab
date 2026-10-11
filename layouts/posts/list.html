@@ -1,0 +1,27 @@
+{{- /*
+  posts/list.html: THE BULLETIN BOARD PAGE (the list of all posts)
+
+  How Hugo picks a template: for a page in content/posts/ it looks in layouts/posts/ first,
+  and only then falls back to layouts/_default/. That is why this file is used for
+  content/posts/_index.md and list.html is used for everything else.
+*/ -}}
+{{ define "main" }}
+  {{ partial "crumbs.html" . }}
+  <h1>{{ .Title }}</h1>
+  {{ .Content }}
+
+  {{/* "range" repeats the block once for every item in a list.
+         .Pages is every page inside this section: here, every post. Hugo sorts them
+         newest first. Inside the loop the dot (.) means "the post being shown". */}}
+  {{ range .Pages }}
+    <article class="post">
+      <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+      {{/* .Date.Format shows the date. Go formats dates using one fixed example date,
+             "Mon Jan 2 2006", instead of codes like YYYY: "January 2, 2006" means
+             "spell out the month, then the day, a comma and the year". */}}
+      <p class="small"><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time></p>
+      {{/* .Summary is the first part of the post (about 70 words). */}}
+      {{ .Summary }}
+    </article>
+  {{ end }}
+{{ end }}

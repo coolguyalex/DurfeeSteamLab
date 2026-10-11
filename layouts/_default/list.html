@@ -1,14 +1,15 @@
+{{- /*
+  list.html: A SECTION PAGE
+
+  Hugo uses this for every _index.md file (for example content/resources/_index.md).
+  Our section pages write their own lists of links inside the Markdown, so this template
+  only needs to show the page's title and text.
+
+  The bulletin board is an exception. It has its own template, layouts/posts/list.html,
+  and Hugo prefers a template that matches the section's folder name.
+*/ -}}
 {{ define "main" }}
   {{ partial "crumbs.html" . }}
   <h1>{{ .Title }}</h1>
   {{ .Content }}
-  {{ if eq .Section "posts" }}
-    {{ range .Pages }}
-      <article class="post">
-        <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
-        <p class="small"><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time></p>
-        {{ .Summary }}
-      </article>
-    {{ end }}
-  {{ end }}
 {{ end }}

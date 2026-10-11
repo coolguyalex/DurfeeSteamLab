@@ -1,3 +1,9 @@
+{{- /*
+  404.html: THE "PAGE NOT FOUND" PAGE
+
+  Hugo builds this into 404.html. Cloudflare shows it when someone visits an address
+  that doesn't exist (wrangler.jsonc turns that on with "not_found_handling").
+*/ -}}
 {{ define "main" }}
   <h1>Page not found</h1>
   <p>That page doesn't exist. Try the <a href="{{ "/" | relURL }}">home page</a> or <a href="{{ "resources/" | relURL }}">Resources</a>.</p>

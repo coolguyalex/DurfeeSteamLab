@@ -1,0 +1,13 @@
+{{- /*
+  logo.html: THE LOGO (a wave running into a dot)
+
+  It is an SVG: a picture written as text, so it stays sharp at any size and takes its
+  colour from the CSS. The caller passes a width. The height is the width divided by 1.9.
+  How it is drawn:
+    stroke="currentColor"  the wave uses the text colour around it (white in the header)
+    first <path>           the wavy line (C and S are curve commands)
+    second <path>          the short straight line to the dot
+    <circle>               the dot; the class "logo-dot" lets style.css colour it red
+  viewBox="0 0 76 40" is the drawing's own coordinate grid, 76 units wide and 40 tall.
+*/ -}}
+<svg class="logo" width="{{ .width }}" height="{{ div .width 1.9 }}" viewBox="0 0 76 40" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 20 C 8 3, 16 3, 21 20 S 34 37, 39 20 S 47 8, 52 20"/><path d="M52 20 L 62 20"/><circle class="logo-dot" cx="67" cy="20" r="4.6" stroke="none"/></svg>
