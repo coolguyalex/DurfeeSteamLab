@@ -1,0 +1,9 @@
+{{ $cur := . }}
+<header class="site-header"><div class="wrap">
+  <a class="brand" href="{{ "/" | relURL }}">{{ partial "gear.html" (dict "size" 26 "stroke" "#f2efe6") }}<span>{{ site.Title }}</span></a>
+  <nav class="main-nav" aria-label="Main">
+    {{ range site.Menus.main -}}
+      <a href="{{ .URL }}"{{ if or (eq $cur.RelPermalink .URL) (and (ne .URL "/") (hasPrefix $cur.RelPermalink .URL)) }} aria-current="page"{{ end }}>{{ .Name }}</a>
+    {{ end }}
+  </nav>
+</div></header>

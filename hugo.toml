@@ -1,0 +1,33 @@
+baseURL = 'https://example.org/'
+locale = 'en-us'
+title = 'Durfee STEAM Lab'
+
+# Don't build tag/category pages (we don't use them).
+disableKinds = ['taxonomy', 'term']
+
+[markup.goldmark.renderer]
+  unsafe = true        # lets the old pages keep their small bits of raw HTML
+
+[markup.highlight]
+  noClasses = false    # code blocks styled by our own CSS, not Hugo's built-in colors
+
+[[menus.main]]
+  name = 'Home'
+  pageRef = '/'
+  weight = 10
+[[menus.main]]
+  name = 'Resources'
+  pageRef = '/resources'
+  weight = 20
+[[menus.main]]
+  name = 'Bulletin Board'
+  pageRef = '/posts'
+  weight = 30
+[[menus.main]]
+  name = 'Fair & Deadlines'
+  pageRef = '/fair'
+  weight = 40
+[[menus.main]]
+  name = 'Schedule & Info'
+  pageRef = '/schedule'
+  weight = 50

@@ -1,0 +1,6 @@
+{{ $trail := where .Ancestors "IsHome" false }}
+{{ with $trail }}
+<nav class="crumbs" aria-label="Breadcrumb">
+  {{- range $i, $p := .Reverse }}{{ if $i }} &rsaquo; {{ end }}<a href="{{ $p.RelPermalink }}">{{ $p.Title }}</a>{{ end -}}
+</nav>
+{{ end }}

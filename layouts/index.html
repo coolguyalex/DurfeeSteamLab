@@ -1,0 +1,22 @@
+{{ define "hero" }}
+<section class="hero"><div class="wrap">
+  {{ partial "gear.html" (dict "size" 64 "stroke" "#f2efe6") }}
+  <h1>{{ site.Title }}</h1>
+  <p class="tagline">{{ .Params.tagline }}</p>
+  <p class="where">Durfee High School &middot; Fall River, MA</p>
+</div></section>
+{{ end }}
+
+{{ define "main" }}
+  <h2>Bulletin board</h2>
+  {{ range first 5 (where site.RegularPages "Section" "posts") }}
+    <article class="post">
+      <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+      <p class="small"><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time></p>
+      {{ .Summary }}
+    </article>
+  {{ end }}
+  <p><a href="{{ "posts/" | relURL }}">All posts</a></p>
+
+  {{ .Content }}
+{{ end }}
