@@ -1,6 +1,6 @@
 ---
 title: "Home"
-tagline: "A working lab at Durfee High School. Pick a question, build something, show it off."
+tagline: "A interdisciplinary team where the technical meets the creative."
 ---
 
 <!--
