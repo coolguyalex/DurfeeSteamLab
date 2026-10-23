@@ -48,6 +48,10 @@ disableKinds = ['taxonomy', 'term']
   pageRef = '/posts'
   weight = 30
 [[menus.main]]
+  name = 'Art & Inspiration'
+  pageRef = '/art'
+  weight = 35
+[[menus.main]]
   name = 'Fair & Deadlines'
   pageRef = '/fair'
   weight = 40
